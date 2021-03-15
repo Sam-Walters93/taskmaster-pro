@@ -203,7 +203,15 @@ $(".list-group").on("click", "span", function() {
     .attr("type", "text")
     .addClass("form-control")
     .val(date);
+
   $(this).replaceWith(dateInput);
+
+  dateInput.datepicker({
+    minDate: 1,
+    onClose: function() {
+      $(this).trigger("change");
+    }
+  });
 
   // automatically bring up the calendar
   dateInput.trigger("focus");
@@ -241,6 +249,10 @@ $("#remove-tasks").on("click", function() {
   }
   console.log(tasks);
   saveTasks();
+});
+
+$("#modalDueDate").datepicker({
+  minDate: 1
 });
 
 // load tasks for the first time
